@@ -1,0 +1,13 @@
+{
+  "files": [
+    "test.ts"
+  ],
+  "compilerOptions": {
+    "target": "es6",
+    "types": [
+      "mocha",
+      "node"
+    ],
+    "module": "commonjs"
+  }
+}
