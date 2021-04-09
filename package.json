@@ -1,0 +1,33 @@
+{
+  "name": "dbdjs.sequelize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./",
+    "lint:init": "eslint --init",
+    "lint:fix": "eslint --fix ./",
+    "lint:typings": "tslint src/index.d.ts",
+    "lint:typings:fix": "tslint --fix src/index.d.ts",
+    "build": "tsc",
+    "prettywrite": "prettier --write \"src/**/*.ts\" \"dist/**/*.ts\" \"dist/**/*.js\"",
+    "prettycheck": "prettier --check \"src/**/*.ts\" \"dist/**/*.ts\" \"dist/**/*.js\"",
+    "lint:ts": "tslint -p tsconfig.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/sequelize": "^4.28.9",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37",
+    "eslint": "^7.23.0",
+    "prettier": "^2.2.1",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.2.4"
+  }
+}
