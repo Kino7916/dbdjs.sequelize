@@ -1,2 +1,4 @@
+database.sqlite
 node_modules
+index.d.ts
 dist
