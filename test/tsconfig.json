@@ -4,10 +4,10 @@
   ],
   "compilerOptions": {
     "target": "es6",
+    "module": "commonjs",
     "types": [
       "mocha",
       "node"
-    ],
-    "module": "commonjs"
+    ]
   }
 }

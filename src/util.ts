@@ -3,18 +3,18 @@ import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize';
 
 namespace Types {
   export const NIL = 0;
-  export const NAN = 1;
-  export const INF = 2;
-  export const BOOL = 3;
-  export const NUM = 4;
-  export const TXT = 5;
-  export const SYM = 6;
-  export const OBJ = 7;
+  export const UND = 1;
+  export const NAN = 2;
+  export const INF = 3;
+  export const BOOL = 4;
+  export const NUM = 5;
+  export const TXT = 6;
+  export const SYM = 7;
+  export const OBJ = 8;
 
-  export function getType(
-    d: symbol | string | number | boolean | void | object
-  ): -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 {
-    if (d == null) return NIL;
+  export function getType(d: Type): -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 {
+    if (d === null) return NIL;
+    if (typeof d === 'undefined') return UND;
     if (typeof d === 'boolean') return BOOL;
 
     if (typeof d === 'number') {
@@ -33,20 +33,25 @@ namespace Types {
 }
 
 namespace Schema {
-  const key = DataTypes.TEXT;
-  const types = DataTypes.TINYINT;
+  const key = {
+    type: DataTypes.STRING({ length: 1024 }),
+    allowNull: false,
+    primaryKey: true
+  };
+
+  const types = DataTypes.CHAR({ length: 1 });
   const bool = DataTypes.BOOLEAN;
-  const num = DataTypes.DOUBLE;
-  const txt = DataTypes.TEXT;
-  const blob = DataTypes.BLOB;
+  const num = DataTypes.DOUBLE();
+  const txt = DataTypes.TEXT();
+  const blob = DataTypes.BLOB();
 
   export interface Attribute {
     key: string;
-    types: number;
-    bool: boolean | void;
-    num: number | void;
-    txt: string | void;
-    blob: object | void;
+    types: string;
+    bool?: boolean;
+    num?: number;
+    txt?: string;
+    blob?: Buffer;
   }
 
   export function create(
@@ -64,4 +69,6 @@ namespace Schema {
   }
 }
 
-export { Types, Schema };
+type Type = symbol | string | number | boolean | void | object;
+
+export { Types, Schema, Type };
