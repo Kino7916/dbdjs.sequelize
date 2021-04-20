@@ -26,6 +26,17 @@ const third = {
   }
 };
 
+const fourth = {
+  key: 'd',
+  data: {
+    key: 'd',
+    value: {
+      x: 4,
+      y: 5
+    }
+  }
+};
+
 function test(sequelize: Sequelize) {
   const db = create(sequelize);
 
@@ -56,14 +67,22 @@ function test(sequelize: Sequelize) {
         false
       );
     });
+
+    it(`Should set data into table with key as '${fourth.key}'`, async () => {
+      assert.notStrictEqual(
+        await db.set('main', fourth.key, fourth.data.value),
+        false
+      );
+    });
   });
 
   describe('#get', () => {
     it(`Should get data from table with key as '${second.key}'`, async () => {
-      assert.deepStrictEqual(await db.get('main', second.key), {
-        key: second.key,
-        value: second.data.value
-      });
+      assert.deepStrictEqual(await db.get('main', second.key), second.data);
+    });
+
+    it(`Should get data from table with key as '${fourth.key}'`, async () => {
+      assert.deepStrictEqual(await db.get('main', fourth.key), fourth.data);
     });
   });
 
